@@ -1,0 +1,14 @@
+.videos {
+  display: flex;
+  gap: 16px;
+}
+
+.preview {
+  flex: 1;
+}
+
+.video {
+  display: block;
+  background-color: #333;
+  height: 40vh;
+}

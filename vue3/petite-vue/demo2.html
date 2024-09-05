@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ count }}
+      <button @click="increment">inc</button>
+    </div>
+
+    <script src="https://unpkg.com/petite-vue"></script>
+    <script>
+      PetiteVue.createApp({
+        count: 0,
+        increment() {
+          this.count++
+        },
+      }).mount('#app')
+    </script>
+  </body>
+</html>

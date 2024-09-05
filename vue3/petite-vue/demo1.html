@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- init 属性告诉 petite-vue 自动查询并初始化页面上所有具有 v-scope 的元素 -->
+    <script src="https://unpkg.com/petite-vue" defer init></script>
+  </head>
+  <body>
+    <div v-scope="{ count: 0 }">
+      {{ count }}
+      <button @click="count++">inc</button>
+    </div>
+  </body>
+</html>
