@@ -4,6 +4,7 @@ const { resolve } = require('path')
 
 const express = require('express')
 const { Server } = require('socket.io')
+const ip = require('ip')
 
 const app = express()
 
@@ -55,4 +56,6 @@ io.on('connect', socket => {
   })
 })
 
-httpServer.listen(443)
+httpServer.listen(443, () => {
+  console.log('https://' + ip.address())
+})

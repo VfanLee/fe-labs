@@ -130,6 +130,7 @@ function conn() {
 }
 
 function getAnswer(desc) {
+  console.log('~~ answer', desc)
   pc.setLocalDescription(desc)
     .then(() => sendMessage(joinedRoomId, desc))
     .catch(err => console.log('setLocalDescription() Error', err))
@@ -208,10 +209,7 @@ function closePeerConnection() {
 function call() {
   if (state === 'join_conn') {
     if (pc) {
-      pc.createOffer({
-        offerToReceiveAudio: 1,
-        offerToReceiveVideo: 1,
-      })
+      pc.createOffer()
         .then(getOffer)
         .catch(err => console.log('createOffer() Error', err))
     }
@@ -219,6 +217,7 @@ function call() {
 }
 
 function getOffer(desc) {
+  console.log('@@ offer', desc)
   pc.setLocalDescription(desc)
     .then(() => sendMessage(joinedRoomId, desc))
     .catch(err => console.log('setLocalDescription() Error', err))

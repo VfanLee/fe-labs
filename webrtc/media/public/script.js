@@ -9,8 +9,8 @@ let stream
 const constraints = {
   audio: true,
   video: {
-    width: { ideal: 1920 },
-    height: { ideal: 1080 },
+    width: { min: 300, max: 1920, ideal: 1920 },
+    height: { ideal: 300 },
     frameRate: 30,
   },
 }
@@ -23,6 +23,8 @@ document.querySelector('#share').addEventListener('click', async e => {
     const tracks = stream.getTracks()
     tracks.forEach(track => {
       console.log('track', track.getCapabilities())
+
+      console.log('@settings', track.getSettings())
     })
   } catch (error) {
     console.log(error)

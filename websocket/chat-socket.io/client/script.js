@@ -9,10 +9,6 @@ socket.on('connect', () => {
   console.log(`[ ${socket.id} 连接成功 ]`)
 })
 
-socket.on('connect_error', () => {
-  console.log('[ 断开连接 ]', reason)
-})
-
 socket.on('disconnect', reason => {
   console.log('[ 断开连接 ]', reason)
 })

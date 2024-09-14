@@ -20,8 +20,12 @@ io.on('connect', socket => {
     console.log('[ 发送消息 ]', data)
   })
 
-  socket.on('disconnect', () => {
-    console.log('[ 断开连接 ]')
+  socket.on('disconnect', reason => {
+    console.log('[ disconnect 断开连接 ]', reason)
+  })
+
+  socket.on('disconnecting', reason => {
+    console.log('[ disconnecting 断开连接 ]', reason)
   })
 })
 

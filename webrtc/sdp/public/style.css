@@ -1,0 +1,21 @@
+body {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.videos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.video-player {
+  width: 100%;
+  background-color: #000;
+}
+
+textarea {
+  width: 100%;
+}
