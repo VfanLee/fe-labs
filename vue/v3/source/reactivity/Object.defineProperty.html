@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object.defineProperty</title>
+  </head>
+  <body>
+    <script>
+      // 总价格
+      let total = 0
+      // 商品数量
+      let quantity = 2
+      // 商品信息
+      const product = {
+        price: 10,
+        quantity: quantity,
+      }
+
+      // 更新总价
+      const effect = () => {
+        total = product.price * product.quantity
+      }
+
+      // 第一次打印总价
+      effect()
+      console.log(`总价格：${total}`)
+
+      // 响应式原理之 Object.defineProperty
+      Object.defineProperty(product, 'quantity', {
+        set(newVal) {
+          console.log('setter')
+
+          quantity = newVal
+          effect()
+          console.log(`总价格：${total}`)
+        },
+        get() {
+          console.log('getter')
+
+          return quantity
+        },
+      })
+
+      setTimeout(() => {
+        product.quantity = 5
+      }, 1000)
+    </script>
+  </body>
+</html>
