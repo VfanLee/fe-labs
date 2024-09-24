@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxy</title>
+  </head>
+  <body>
+    <script>
+      // 总价格
+      let total = 0
+      // 商品数量
+      let quantity = 2
+      // 商品信息
+      const product = {
+        price: 10,
+        quantity: quantity,
+      }
+
+      /*
+        product -> 被代理对象
+        proxyProduct -> 代理对象（只有代理对象才会触发 getter/setter）
+       */
+      const proxyProduct = new Proxy(product, {
+        get(target, key, receiver) {
+          console.log('getter 触发了', {
+            '被代理对象': target,
+            '访问的对象属性': key,
+            'Proxy 代理对象': receiver,
+          })
+
+          return target[key]
+        },
+        set(target, key, value, receiver) {
+          console.log('setter 触发了', {
+            '被代理对象': target,
+            '访问的对象属性': key,
+            '新值': value,
+            'Proxy 代理对象': receiver,
+          })
+
+          target[key] = value
+          effect()
+          console.log(`总价格：${total}`)
+
+          return true // 固定操作
+        },
+      })
+
+      // 更新总价
+      const effect = () => {
+        total = proxyProduct.price * proxyProduct.quantity
+      }
+
+      // 第一次打印总价
+      effect()
+      console.log(`总价格：${total}`)
+
+      setTimeout(() => {
+        proxyProduct.quantity = 5
+      }, 1000)
+    </script>
+  </body>
+</html>

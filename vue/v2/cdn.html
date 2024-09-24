@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDN Vue2</title>
+  </head>
+  <body>
+    <body>
+      <div id="app"></div>
+
+      <script src="https://unpkg.com/vue@2.7.16/dist/vue.min.js"></script>
+      <script>
+        const Header = {
+          props: {
+            title: {
+              type: String,
+              default: 'Default Title',
+            },
+          },
+          template: `<h1>{{ title }}</h1>`,
+        }
+
+        const App = {
+          components: {
+            Header,
+          },
+          data() {
+            return {
+              names: ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'],
+              likes: 0,
+            }
+          },
+          methods: {
+            handleClick() {
+              this.likes++
+            },
+          },
+          template: `
+            <div>
+              <Header title="Vue2" />
+              <ul>
+                <li v-for="(name, index) of names" :key="index">{{ name }}</li>
+              </ul>
+              <button @click="handleClick">Like({{ likes }})</button>
+            </div>
+          `,
+        }
+
+        const app = new Vue(App)
+        app.$mount('#app')
+      </script>
+    </body>
+  </body>
+</html>

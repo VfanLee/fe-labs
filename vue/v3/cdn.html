@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello Vue3</title>
+    <title>CDN Vue3</title>
   </head>
   <body>
     <body>
       <div id="app"></div>
 
-      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+      <script src="https://unpkg.com/vue@3.5.8/dist/vue.global.prod.js"></script>
       <script>
         const { createApp, ref } = Vue
 
@@ -17,16 +17,16 @@
           props: {
             title: {
               type: String,
-              default: 'Default title'
-            }
+              default: 'Default Title',
+            },
           },
           setup(props, { emit }) {},
-          template: `<h1>{{ title }}</h1>`
+          template: `<h1>{{ title }}</h1>`,
         }
 
         const App = {
           components: {
-            Header
+            Header,
           },
           setup(props, { emit }) {
             const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton']
@@ -39,19 +39,21 @@
             return {
               names,
               likes,
-              handleClick
+              handleClick,
             }
           },
           template: `
-          <Header title="Vue3" />
-          <ul>
-            <li v-for="(name, index) of names" :key="index">{{ name }}</li>
-          </ul>
-          <button @click="handleClick">Like({{ likes }})</button>
-          `
+            <Header title="Vue3" />
+            <ul>
+              <li v-for="(name, index) of names" :key="index">{{ name }}</li>
+            </ul>
+            <button @click="handleClick">Like({{ likes }})</button>
+          `,
         }
 
-        createApp(App).mount('#app')
+        const app = createApp(App)
+
+        app.mount('#app')
       </script>
     </body>
   </body>
