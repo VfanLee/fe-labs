@@ -1,9 +1,8 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main>
-    <TheWelcome />
+    <v-btn>你好哦</v-btn>
+    <v-btn color="primary">你好哦</v-btn>
   </main>
 </template>
