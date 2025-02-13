@@ -8,27 +8,27 @@ module.exports = {
   context: resolve(__dirname),
   entry: {
     pc: './src/pages/pc/main.js',
-    mobile: './src/pages/mobile/main.js'
+    mobile: './src/pages/mobile/main.js',
   },
   output: {
     path: resolve(__dirname, 'dist'),
     filename: '[name]-[chunkhash].js',
-    clean: true
+    clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: `public/index.html`,
       filename: `index.html`,
-      excludeChunks: chunks
+      excludeChunks: chunks,
     }),
     ...chunks.map(
-      name =>
+      (name) =>
         new HtmlWebpackPlugin({
           template: `public/${name}.html`,
           filename: `${name}.html`,
           title: `${name}`,
-          chunks: [name]
-        })
-    )
-  ]
+          chunks: [name],
+        }),
+    ),
+  ],
 }

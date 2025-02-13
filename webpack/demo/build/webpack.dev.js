@@ -16,12 +16,12 @@ module.exports = {
     path: resolve(__dirname, '../dist'),
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].js',
-    assetModuleFilename: 'asset/[name].[hash:8][ext]'
+    assetModuleFilename: 'asset/[name].[hash:8][ext]',
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, '../src')
-    }
+      '@': resolve(__dirname, '../src'),
+    },
   },
   module: {
     rules: [
@@ -30,82 +30,82 @@ module.exports = {
         test: /\.(svg)(\?.*)?$/,
         type: 'asset/resource',
         generator: {
-          filename: 'img/[name].[hash:8][ext]'
-        }
+          filename: 'img/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('images') */
       {
         test: /\.(png|jpe?g|gif|webp|avif)(\?.*)?$/,
         type: 'asset',
         generator: {
-          filename: 'img/[name].[hash:8][ext]'
-        }
+          filename: 'img/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('media') */
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         type: 'asset',
         generator: {
-          filename: 'media/[name].[hash:8][ext]'
-        }
+          filename: 'media/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('fonts') */
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
         type: 'asset',
         generator: {
-          filename: 'fonts/[name].[hash:8][ext]'
-        }
+          filename: 'fonts/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('css') */
       {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: false,
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: false
-            }
-          }
-        ]
+              sourceMap: false,
+            },
+          },
+        ],
       },
       /* config.module.rule('s[ac]ss') */
       {
         test: /\.s[ac]ss$/i,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
-            }
-          }
-        ]
+              sourceMap: true,
+            },
+          },
+        ],
       },
       /* config.module.rule('js') */
       {
@@ -116,12 +116,12 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               cacheDirectory: 'node_modules/.cache/babel-loader',
-              cacheCompression: false
-            }
-          }
-        ]
-      }
-    ]
+              cacheCompression: false,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     /* config.plugin('case-sensitive-paths') */
@@ -133,7 +133,7 @@ module.exports = {
       template: 'public/index.html',
       title: 'Webpack Demo',
       filename: 'index.html',
-      publicPath: 'auto'
+      publicPath: 'auto',
     }),
     /* config.plugin('copy') */
     new CopyWebpackPlugin({
@@ -142,30 +142,30 @@ module.exports = {
           from: resolve(__dirname, '../public'),
           to: resolve(__dirname, '../dist'),
           globOptions: {
-            ignore: ['**/public/index.html']
+            ignore: ['**/public/index.html'],
           },
           info: {
-            minimized: true
-          }
-        }
-      ]
-    })
+            minimized: true,
+          },
+        },
+      ],
+    }),
   ],
   devServer: {
     client: {
       logging: 'info',
       overlay: {
         errors: true,
-        warnings: true
+        warnings: true,
       },
       progress: true,
-      reconnect: true
+      reconnect: true,
     },
     https: false,
     host: 'local-ip',
     port: 'auto',
     static: {
-      publicPath: config.publicPath
+      publicPath: config.publicPath,
     },
     open: [config.publicPath],
     hot: true, // 模块热替换
@@ -178,10 +178,10 @@ module.exports = {
       const protocol = devServer.options.https ? 'https' : 'http'
       const publicPath = devServer.options.static[0].publicPath[0]
       console.log(`Listening on: ${protocol}://${address}:${port}${publicPath}`)
-    }
+    },
   },
   stats: 'errors-only',
   externals: {
-    jquery: 'jQuery'
-  }
+    jquery: 'jQuery',
+  },
 }

@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "Vfan Lee",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-html": "^2.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-url": "^8.0.2",
+    "@types/lodash-es": "^4.17.12",
+    "rollup": "^4.34.6",
+    "rollup-plugin-delete": "^2.1.0",
+    "rollup-plugin-esbuild": "^6.2.0",
+    "rollup-plugin-generate-html-template": "^1.7.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-sass": "^1.15.2",
+    "sass": "^1.84.0"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "normalize.css": "^8.0.1"
+  }
+}

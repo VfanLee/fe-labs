@@ -8,6 +8,9 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
+/**
+ * @type {import('webpack').Configuration}
+ */
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
@@ -20,12 +23,12 @@ module.exports = {
     filename: 'js/[name].[contenthash:8].js',
     chunkFilename: 'js/[name].chunk.[contenthash:8].js',
     assetModuleFilename: 'asset/[name].[hash:8][ext]',
-    clean: true
+    clean: true,
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, '../src')
-    }
+      '@': resolve(__dirname, '../src'),
+    },
   },
   module: {
     rules: [
@@ -34,32 +37,32 @@ module.exports = {
         test: /\.(svg)(\?.*)?$/,
         type: 'asset/resource',
         generator: {
-          filename: 'img/[name].[hash:8][ext]'
-        }
+          filename: 'img/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('images') */
       {
         test: /\.(png|jpe?g|gif|webp|avif)(\?.*)?$/,
         type: 'asset',
         generator: {
-          filename: 'img/[name].[hash:8][ext]'
-        }
+          filename: 'img/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('media') */
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         type: 'asset',
         generator: {
-          filename: 'media/[name].[hash:8][ext]'
-        }
+          filename: 'media/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('fonts') */
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
         type: 'asset',
         generator: {
-          filename: 'fonts/[name].[hash:8][ext]'
-        }
+          filename: 'fonts/[name].[hash:8][ext]',
+        },
       },
       /* config.module.rule('css') */
       {
@@ -68,23 +71,23 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: config.publicPath
-            }
+              publicPath: config.publicPath,
+            },
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: false,
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: false
-            }
-          }
-        ]
+              sourceMap: false,
+            },
+          },
+        ],
       },
       /* config.module.rule('s[ac]ss') */
       {
@@ -93,29 +96,29 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: config.publicPath
-            }
+              publicPath: config.publicPath,
+            },
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
-            }
-          }
-        ]
+              sourceMap: true,
+            },
+          },
+        ],
       },
       /* config.module.rule('js') */
       {
@@ -129,12 +132,12 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               cacheCompression: false,
-              cacheDirectory: 'node_modules/.cache/babel-loader'
-            }
-          }
-        ]
-      }
-    ]
+              cacheDirectory: 'node_modules/.cache/babel-loader',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     /* config.plugin('case-sensitive-paths') */
@@ -146,12 +149,12 @@ module.exports = {
       template: 'public/index.html',
       title: 'Webpack Demo',
       filename: 'index.html',
-      publicPath: 'auto'
+      publicPath: 'auto',
     }),
     /* config.plugin('mini-css-extract') */
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].chunk.[contenthash:8].css'
+      chunkFilename: 'css/[name].chunk.[contenthash:8].css',
     }),
     /* config.plugin('copy') */
     new CopyWebpackPlugin({
@@ -160,29 +163,29 @@ module.exports = {
           from: resolve(__dirname, '../public'),
           to: resolve(__dirname, '../dist'),
           globOptions: {
-            ignore: ['**/public/index.html']
+            ignore: ['**/public/index.html'],
           },
           info: {
-            minimized: false
-          }
-        }
-      ]
-    })
+            minimized: false,
+          },
+        },
+      ],
+    }),
   ],
   optimization: {
     realContentHash: false,
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
     },
     minimize: true,
     minimizer: [
       /* config.optimization.minimizer('css') */
       new CssMinimizerPlugin(),
       /* config.optimization.minimizer('terser') */
-      new TerserPlugin()
-    ]
+      new TerserPlugin(),
+    ],
   },
   externals: {
-    jquery: 'jQuery'
-  }
+    jquery: 'jQuery',
+  },
 }
