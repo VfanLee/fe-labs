@@ -1,5 +1,5 @@
 const config = require('./config')
-const { resolve, join } = require('path')
+const { resolve } = require('path')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')

@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "webpack": "webpack",
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "VfanLee",
+  "license": "MIT",
+  "devDependencies": {
+    "lodash": "^4.17.21",
+    "webpack": "^4.47.0",
+    "webpack-cli": "^3.3.12"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "rollup": "rollup",
+    "build": "rollup -c rollup.config.js"
+  },
+  "keywords": [],
+  "author": "Vfan Lee",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^4.34.6"
+  }
+}
