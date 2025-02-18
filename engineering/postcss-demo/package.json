@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "postcss src/index.css -o dist/css/index.css -w",
+    "build": "postcss src/index.css -o dist/css/index.css"
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.0",
+    "postcss": "^8.5.2",
+    "postcss-cli": "^10.1.0",
+    "postcss-preset-env": "^9.5.0",
+    "postcss-rtl": "^2.0.0"
+  }
+}
