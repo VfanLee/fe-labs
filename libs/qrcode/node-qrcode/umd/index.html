@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <!-- 1.5.1+ 没有 build/qrcode.js -->
+    <script src="https://unpkg.com/qrcode@1.5.1/build/qrcode.js"></script>
+    <script>
+      QRCode.toCanvas(document.getElementById('canvas'), 'sample text', {
+        errorCorrectionLevel: 'Q',
+        scale: 2,
+        small: false,
+        width: 200,
+        // color: {
+        //   dark: '#ff00ff',
+        //   light: '#ffff00',
+        // },
+      }).then(qrCodeCanvas => {
+        debugger
+        const logo = new Image()
+        logo.src = 'vite.svg'
+        logo.onload = () => {
+          const ctx = qrCodeCanvas.getContext('2d')
+          ctx.imageSmoothingEnabled = false
+          // This puts a 50x50 logo right at the center of a 200x200 canvas
+          ctx.drawImage(logo, 75, 75, 50, 50)
+        }
+      })
+    </script>
+  </body>
+</html>

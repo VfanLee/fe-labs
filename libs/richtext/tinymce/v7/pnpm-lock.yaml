@@ -1,0 +1,13 @@
+lockfileVersion: 5.4
+
+specifiers:
+  tinymce: ^7.4.1
+
+dependencies:
+  tinymce: 7.4.1
+
+packages:
+
+  /tinymce/7.4.1:
+    resolution: {integrity: sha512-g1Ieaio5YU+jLEQZkQyxTT8EY/im+TC/CFBPlqDBCNdsF8YQOeLMot+K6vmFOAXhNc85KhP1rC9Dn2X+iBFDGg==}
+    dev: false

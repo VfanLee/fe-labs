@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>iframe-simple.html</h2>
+
+    <script>
+      // send the "block" mceAction
+      window.parent.postMessage(
+        {
+          mceAction: 'block',
+          message: 'Blocking from iframe',
+        },
+        origin,
+      )
+
+      // wait 2 seconds
+      setTimeout(() => {
+        // send the "unblock" mceAction
+        window.parent.postMessage(
+          {
+            mceAction: 'unblock',
+          },
+          origin,
+        )
+
+        window.parent.postMessage(
+          {
+            mceAction: 'insertContent',
+            content: 'Some content',
+          },
+          '*',
+        )
+      }, 2000)
+    </script>
+  </body>
+</html>
