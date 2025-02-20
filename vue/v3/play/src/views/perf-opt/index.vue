@@ -4,7 +4,7 @@ a
 <template>
   <div class="container">
     <ul class="menu">
-      <li><RouterLink :to="{ name: 'v-lazy' }">二次封装</RouterLink></li>
+      <li><RouterLink :to="{ name: 'v-lazy' }">v-lazy 指令实现图片懒加载</RouterLink></li>
     </ul>
     <div class="content">
       <RouterView />
@@ -22,6 +22,7 @@ a
   }
   .content {
     flex: 1;
+    overflow: auto;
   }
 }
 </style>

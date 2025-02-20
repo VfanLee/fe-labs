@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue'),
+      component: () => import('@/views/home-view.vue'),
     },
     {
       path: '/v-model',
@@ -29,6 +29,18 @@ const router = createRouter({
           path: '',
           name: 'secondary-packaging',
           component: () => import('@/views/components/secondary-packaging/secondary-packaging.vue'),
+        },
+      ],
+    },
+    {
+      path: '/perf-opt',
+      name: 'perf-opt',
+      component: () => import('@/views/perf-opt/index.vue'),
+      children: [
+        {
+          path: 'v-lazy',
+          name: 'v-lazy',
+          component: () => import('@/views/perf-opt/v-lazy/v-lazy.vue'),
         },
       ],
     },
