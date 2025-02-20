@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 500px;
+        height: 500px;
+        outline: 1px solid #aaa;
+      }
+      .box {
+        width: 50px;
+        height: 50px;
+        outline: 1px solid #aaa;
+      }
+
+      /* 方式1 */
+      /* .container {
+        display: grid;
+        place-items: center;
+      } */
+
+      /* 方式2 */
+      .container {
+        display: grid;
+      }
+      .box {
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span class="box">box</span>
+    </div>
+  </body>
+</html>

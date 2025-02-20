@@ -4,7 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>产品列表</title>
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      .list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        background-color: orange;
+        border-radius: 8px;
+        font-size: 24px;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
     <ul class="list">
