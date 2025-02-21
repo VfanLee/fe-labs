@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import MyInput from './MyInput.vue'
-import MyCheck from './MyCheck.vue'
+import MyCheckbox from './MyCheckbox.vue'
 
 const textValue = ref('')
 const checkValue = ref(false)
@@ -14,7 +14,7 @@ const checkValue = ref(false)
   </div>
 
   <div>
-    <MyCheck v-model="checkValue" label="checkbox" />
+    <MyCheckbox v-model="checkValue" label="checkbox" />
     <p>checkValue: {{ checkValue }}</p>
   </div>
 </template>

@@ -6,14 +6,33 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/v-model",
+    name: "v-model",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "v-model" */ "@/views/v-model/v-model.vue"),
+    redirect: "/v-model/basic",
+    children: [
+      {
+        path: "basic",
+        name: "v-model-basic",
+        component: () =>
+          import(
+            /* webpackChunkName: "v-model-basic" */ "@/views/v-model/basic/basic.vue"
+          ),
+      },
+      {
+        path: "multi-value",
+        name: "v-model-multi-value",
+        component: () =>
+          import(
+            /* webpackChunkName: "v-model-multi-value" */ "@/views/v-model/multi-value/multi-value.vue"
+          ),
+      },
+    ],
   },
 ];
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({
-  name: 'MyCheck',
+  name: 'MyCheckbox',
 })
 
 const props = defineProps<{
@@ -26,7 +26,7 @@ const emit = defineEmits<{
   </label>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .custom-checkbox {
   display: inline-flex;
   align-items: center;

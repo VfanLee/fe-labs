@@ -1,8 +1,13 @@
+import "@/styles/index.scss";
+
 import Vue from "vue";
-import App from "./App.vue";
 import router from "./router";
 
+import App from "./App.vue";
+import Layout from "@/components/Layout/index.vue";
+
 Vue.config.productionTip = false;
+Vue.component("Layout", Layout);
 
 new Vue({
   router,

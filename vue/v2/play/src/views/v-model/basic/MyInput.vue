@@ -1,25 +1,23 @@
-<script setup lang="ts">
-defineOptions({
-  name: 'MyInput',
-})
-
-const props = defineProps<{
-  modelValue: string
-}>()
-
-const emit = defineEmits<{
-  'update:moelValue': [value: string]
-}>()
-</script>
-
 <template>
   <input
     class="custom-input"
     type="text"
-    :value="modelValue"
-    @input="(e) => emit('update:modelValue', e.target.value)"
+    :value="value"
+    @input="(e) => $emit('input', e.target.value)"
   />
 </template>
+
+<script>
+export default {
+  name: "MyInput",
+  props: {
+    value: {
+      type: String,
+      default: "",
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .custom-input {
