@@ -12,11 +12,17 @@ const router = createRouter({
       path: '/v-model',
       name: 'v-model',
       component: () => import('@/views/v-model/index.vue'),
+      redirect: { name: 'basic' },
       children: [
         {
-          path: '',
-          name: 'v-model-basic',
-          component: () => import('@/views/v-model/v-model-basic/v-model-basic.vue'),
+          path: 'basic',
+          name: 'basic',
+          component: () => import('@/views/v-model/basic/basic.vue'),
+        },
+        {
+          path: 'multi-value',
+          name: 'multi-value',
+          component: () => import('@/views/v-model/multi-value/multi-value.vue'),
         },
       ],
     },
@@ -24,9 +30,10 @@ const router = createRouter({
       path: '/components',
       name: 'components',
       component: () => import('@/views/components/index.vue'),
+      redirect: { name: 'secondary-packaging' },
       children: [
         {
-          path: '',
+          path: 'secondary-packaging',
           name: 'secondary-packaging',
           component: () => import('@/views/components/secondary-packaging/secondary-packaging.vue'),
         },
@@ -36,6 +43,7 @@ const router = createRouter({
       path: '/perf-opt',
       name: 'perf-opt',
       component: () => import('@/views/perf-opt/index.vue'),
+      redirect: { name: 'v-lazy' },
       children: [
         {
           path: 'v-lazy',

@@ -1,26 +1,12 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="container">
-    <ul class="menu">
-      <li><RouterLink :to="{ name: 'v-model-basic' }">v-model</RouterLink></li>
-    </ul>
-    <div class="content">
-      <RouterView />
-    </div>
-  </div>
+  <Layout>
+    <template #menu>
+      <ul class="menu">
+        <li><RouterLink :to="{ name: 'basic' }">v-model 基础示例</RouterLink></li>
+        <li><RouterLink :to="{ name: 'multi-value' }">绑定多个 v-model</RouterLink></li>
+      </ul>
+    </template>
+  </Layout>
 </template>
-
-<style lang="scss" scoped>
-.container {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  .menu {
-    flex: 0 0 200px;
-  }
-  .content {
-    flex: 1;
-  }
-}
-</style>
