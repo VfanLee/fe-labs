@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import 'element-plus/dist/index.css'
-
-import { ElDialog } from 'element-plus'
-
 defineOptions({
   inheritAttrs: false,
 })

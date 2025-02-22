@@ -20,7 +20,7 @@ const visible = ref(false)
     </div>
 
     <div>
-      <button type="button" @click="visible = true">btn</button>
+      <el-button type="button" @click="visible = true">btn</el-button>
       <MyDialog v-model="visible">
         <!-- <template #title>title</template> -->
         <template #header>header</template>
@@ -30,4 +30,3 @@ const visible = ref(false)
     </div>
   </div>
 </template>
-x

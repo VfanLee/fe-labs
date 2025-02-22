@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import 'element-plus/dist/index.css'
-import { ElInput } from 'element-plus'
-
 defineOptions({
   name: 'MyInput',
   inheritAttrs: false,
