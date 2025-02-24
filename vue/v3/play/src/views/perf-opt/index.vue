@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineOptions({
+  name: 'PerfOptView',
+})
+</script>
 
 <template>
   <Layout>

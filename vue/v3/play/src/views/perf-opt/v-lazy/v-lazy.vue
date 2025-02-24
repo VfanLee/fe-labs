@@ -8,7 +8,7 @@ const items = Object.values(images).map((item) => item.default)
 
 const vLazy: Directive = {
   async mounted(el, binding) {
-    let url = await import('@/assets/logo.svg')
+    const url = await import('@/assets/logo.svg')
     el.src = url.default
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
