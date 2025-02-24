@@ -3,7 +3,7 @@ defineOptions({
   name: 'MultiInput',
 })
 
-const props = defineProps<{
+defineProps<{
   modelValue: string
   header: string
   body: string
@@ -23,11 +23,23 @@ const emit = defineEmits<{
     <input
       type="text"
       :value="modelValue"
-      @input="(e) => emit('update:modelValue', e.target.value)"
+      @input="(e) => emit('update:modelValue', (e.target as HTMLInputElement).value)"
     />
-    <input type="text" :value="header" @input="(e) => emit('update:header', e.target.value)" />
-    <input type="text" :value="body" @input="(e) => emit('update:body', e.target.value)" />
-    <input type="text" :value="footer" @input="(e) => emit('update:footer', e.target.value)" />
+    <input
+      type="text"
+      :value="header"
+      @input="(e) => emit('update:header', (e.target as HTMLInputElement).value)"
+    />
+    <input
+      type="text"
+      :value="body"
+      @input="(e) => emit('update:body', (e.target as HTMLInputElement).value)"
+    />
+    <input
+      type="text"
+      :value="footer"
+      @input="(e) => emit('update:footer', (e.target as HTMLInputElement).value)"
+    />
   </div>
 </template>
 

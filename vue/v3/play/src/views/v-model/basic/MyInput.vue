@@ -3,12 +3,12 @@ defineOptions({
   name: 'MyInput',
 })
 
-const props = defineProps<{
+defineProps<{
   modelValue: string
 }>()
 
-const emit = defineEmits<{
-  'update:moelValue': [value: string]
+defineEmits<{
+  'update:modelValue': [value: string]
 }>()
 </script>
 
@@ -17,7 +17,7 @@ const emit = defineEmits<{
     class="custom-input"
     type="text"
     :value="modelValue"
-    @input="(e) => emit('update:modelValue', e.target.value)"
+    @input="(e) => $emit('update:modelValue', (e.target as HTMLInputElement).value)"
   />
 </template>
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 defineOptions({
-  name: 'Layout',
+  name: 'PlayLayout',
   inheritAttrs: false,
 })
 
-defineProps<{ sidebarWidth: number }>()
+defineProps<{ sidebarWidth?: number }>()
 </script>
 
 <template>

@@ -3,12 +3,12 @@ defineOptions({
   name: 'MyCheckbox',
 })
 
-const props = defineProps<{
+defineProps<{
   modelValue: boolean
   label?: string
 }>()
 
-const emit = defineEmits<{
+defineEmits<{
   'update:modelValue': [value: boolean]
 }>()
 </script>
@@ -19,7 +19,7 @@ const emit = defineEmits<{
       type="checkbox"
       class="hidden-checkbox"
       :checked="modelValue"
-      @change="(e) => emit('update:modelValue', e.target.checked)"
+      @change="(e) => $emit('update:modelValue', (e.target as HTMLInputElement).checked)"
     />
     <span class="checkmark"></span>
     <span class="label-text">{{ label }}</span>
