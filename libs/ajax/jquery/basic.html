@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery</title>
+  </head>
+  <body>
+    <section>
+      <button id="get-btn">GET</button>
+    </section>
+
+    <section>
+      <button id="post-btn">POST</button>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      const getBtn = document.querySelector('#get-btn')
+      const postBtn = document.querySelector('#post-btn')
+      const GET_URL = 'https://reqres.in/api/users?page=2'
+      const POST_URL = 'https://reqres.in/api/login'
+
+      // GET
+      getBtn.addEventListener('click', () => {
+        $.ajax({
+          method: 'GET',
+          url: GET_URL,
+          success(result, statusText, xhr) {
+            console.log(result)
+          },
+          error(xhr, statusText, error) {
+            console.log(error)
+          }
+        })
+      })
+
+      // POST
+      postBtn.addEventListener('click', () => {
+        const data = {
+          email: 'eve.holt@reqres.in',
+          password: 'cityslicka'
+        }
+
+        $.ajax({
+          method: 'POST',
+          url: POST_URL,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(data),
+          success(result, statusText, xhr) {
+            console.log(result)
+          },
+          error(xhr, statusText, error) {
+            console.log(error)
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

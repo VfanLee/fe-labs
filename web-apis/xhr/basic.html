@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XMLHttpRequest</title>
+  </head>
+  <body>
+    <section>
+      <button id="get-user-list">用户列表</button>
+      <button id="get-single-user">单用户</button>
+      <button id="create-user">创建用户</button>
+      <button id="update-user">更新用户</button>
+      <button id="delete-user">删除用户</button>
+    </section>
+
+    <script>
+      const baseUrl = 'https://reqres.in'
+      const timeout = 3000
+
+      // 用户列表
+      document.querySelector('#get-user-list').addEventListener('click', (e) => {
+        console.log('用户列表')
+        const url = baseUrl + '/api/users?page=2'
+        const xhr = new XMLHttpRequest()
+        xhr.timeout = timeout
+        xhr.open('GET', url, true)
+        xhr.onreadystatechange = (e) => {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            const response = JSON.parse(xhr.response)
+            console.log(response)
+          }
+        }
+        xhr.onerror = (e) => {
+          console.error(e)
+        }
+        xhr.ontimeout = (e) => {
+          console.error(e)
+        }
+        xhr.send()
+      })
+
+      // 单用户
+      document.querySelector('#get-single-user').addEventListener('click', (e) => {
+        console.log('单用户')
+        const url = baseUrl + '/api/users/2'
+      })
+
+      // 创建用户
+      document.querySelector('#create-user').addEventListener('click', (e) => {
+        console.log('创建用户')
+        const data = {
+          name: 'morpheus',
+          job: 'leader',
+        }
+        const url = baseUrl + '/api/users'
+      })
+
+      // 更新用户
+      document.querySelector('#update-user').addEventListener('click', (e) => {
+        console.log('更新用户')
+        const url = baseUrl + '/api/users/2'
+      })
+
+      // 删除用户
+      document.querySelector('#delete-user').addEventListener('click', (e) => {
+        console.log('删除用户')
+        const url = baseUrl + '/api/users/2'
+      })
+    </script>
+  </body>
+</html>
