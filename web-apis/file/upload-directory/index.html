@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>上传文件夹</title>
+    <style>
+      pre {
+        background-color: #eaeaea;
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="pid">pid</label>
+      <input type="number" id="pid" value="0" />
+
+      <label for="isView">isView</label>
+      <select id="isView">
+        <option value="0">仅自己</option>
+        <option value="3">共享给本单位指定老师</option>
+        <option value="1">共享给本单位其他老师</option>
+        <option value="2">共享给所有老师</option>
+      </select>
+    </div>
+
+    <div style="margin-top: 16px">
+      <input type="file" id="upload-dir" webkitdirectory style="display: none" />
+
+      <button id="upload-dir-btn">上传文件夹</button>
+    </div>
+
+    <div>
+      <p>上传文件夹 - request data</p>
+      <pre></pre>
+
+      <p>文件夹 pid</p>
+      <pre></pre>
+    </div>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
