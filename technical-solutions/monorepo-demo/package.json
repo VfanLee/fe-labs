@@ -1,0 +1,15 @@
+{
+  "name": "monorepo-demo",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "vite": "pnpm -C apps/vite-project dev",
+    "vitepress": "pnpm -C apps/vitepress-project docs:dev"
+  },
+  "keywords": [
+    "monorepo"
+  ],
+  "author": "Vfan Lee",
+  "license": "ISC",
+  "packageManager": "pnpm@10.4.1"
+}
