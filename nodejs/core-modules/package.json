@@ -5,16 +5,23 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fs": "node fs.js",
+    "fse": "node fs-extra.js",
+    "path": "node os.js",
+    "path:cjs": "node os.cjs",
+    "os": "node os.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.5.1",
+  "packageManager": "pnpm@10.5.2",
   "engines": {
     "node": "22.x"
   },
   "dependencies": {
     "fs-extra": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5"
   }
 }
