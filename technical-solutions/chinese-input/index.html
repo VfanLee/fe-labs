@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中文输入法引发的问题</title>
+  </head>
+  <body>
+    <p>打开控制台进行调试</p>
+    <input type="text" />
+
+    <script>
+      function search(keyword) {
+        console.log('搜素：', keyword)
+      }
+
+      let isComposite = false // 是否正在输入中文
+      const inputEl = document.querySelector('input')
+      inputEl.addEventListener('input', (e) => {
+        // 合成中，跳过搜素
+        if (!isComposite) {
+          search(e.target.value)
+        }
+      })
+      inputEl.addEventListener('compositionstart', (e) => {
+        isComposite = true
+      })
+      inputEl.addEventListener('compositionend', (e) => {
+        isComposite = false
+        search(e.target.value)
+      })
+    </script>
+  </body>
+</html>

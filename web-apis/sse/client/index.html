@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button type="button" class="btn">请求接口</button>
+      <p class="result"></p>
+    </div>
+
+    <script type="module">
+      const btn = document.querySelector('.btn')
+      const resultEl = document.querySelector('.result')
+
+      let evtSource = null // 用于存储全局的 SSE 连接
+
+      btn.addEventListener('click', () => {
+        // 如果已经有 SSE 连接，先关闭
+        if (evtSource) {
+          evtSource.close()
+          evtSource = null
+        }
+
+        // 创建新的 SSE 连接
+        evtSource = new EventSource('http://172.20.78.209:3000/chat/send')
+
+        evtSource.onmessage = (e) => {
+          console.log('message', e.data)
+          resultEl.innerHTML += `${e.data}`
+        }
+
+        // 监听服务器发送的关闭事件
+        evtSource.addEventListener('close', () => {
+          console.log('SSE connection closed')
+          evtSource.close()
+          evtSource = null // 清除引用
+        })
+
+        // 监听错误（如服务器断开连接）
+        evtSource.onerror = (err) => {
+          console.error('SSE Error:', err)
+          evtSource.close()
+          evtSource = null
+        }
+      })
+    </script>
+  </body>
+</html>
