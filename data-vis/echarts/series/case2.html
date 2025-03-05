@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="chart" style="width: 900px; height: 600px"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.js"></script>
+    <script type="module">
+      let chart = echarts.init(document.getElementById('chart'))
+      chart.setOption({
+        title: { text: 'dataset 多系列混合' },
+        xAxis: {
+          type: 'category',
+        },
+        yAxis: {
+          type: 'value',
+        },
+        dataset: {
+          source: [
+            ['一季度', 80, 70, '分类1', 50],
+            ['二季度', 92, 82, '分类2', 60],
+            ['三季度', 76, 66, '分类3', 55],
+            ['四季度', 103, 93, '分类4', 70],
+          ],
+        },
+        series: [
+          {
+            type: 'pie',
+            center: ['60%', '20%'],
+            radius: 35,
+            encode: { itemName: 3, value: 4 },
+          },
+
+          {
+            type: 'line',
+            encode: { x: 0, y: 1 },
+          },
+          {
+            type: 'bar',
+            encode: { x: 0, y: 2 },
+          },
+        ],
+      })
+    </script>
+  </body>
+</html>
