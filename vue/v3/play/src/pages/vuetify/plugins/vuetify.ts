@@ -1,5 +1,5 @@
 import 'vuetify/styles'
-import '@/styles/vuetify/index.scss'
+// import '@vuetify/styles/vuetify/index.scss'
 
 import { createVuetify } from 'vuetify'
 

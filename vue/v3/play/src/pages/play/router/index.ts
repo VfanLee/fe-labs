@@ -6,49 +6,50 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/home-view.vue'),
+      component: () => import('@play/views/home-view.vue'),
     },
     {
       path: '/v-model',
       name: 'v-model',
-      component: () => import('@/views/v-model/index.vue'),
+      component: () => import('@play/views/v-model/index.vue'),
       redirect: { name: 'basic' },
       children: [
         {
           path: 'basic',
           name: 'basic',
-          component: () => import('@/views/v-model/basic/basic.vue'),
+          component: () => import('@play/views/v-model/basic/basic.vue'),
         },
         {
           path: 'multi-value',
           name: 'multi-value',
-          component: () => import('@/views/v-model/multi-value/multi-value.vue'),
+          component: () => import('@play/views/v-model/multi-value/multi-value.vue'),
         },
       ],
     },
     {
       path: '/components',
       name: 'components',
-      component: () => import('@/views/components/index.vue'),
+      component: () => import('@play/views/components/index.vue'),
       redirect: { name: 'secondary-packaging' },
       children: [
         {
           path: 'secondary-packaging',
           name: 'secondary-packaging',
-          component: () => import('@/views/components/secondary-packaging/secondary-packaging.vue'),
+          component: () =>
+            import('@play/views/components/secondary-packaging/secondary-packaging.vue'),
         },
       ],
     },
     {
       path: '/perf-opt',
       name: 'perf-opt',
-      component: () => import('@/views/perf-opt/index.vue'),
+      component: () => import('@play/views/perf-opt/index.vue'),
       redirect: { name: 'v-lazy' },
       children: [
         {
           path: 'v-lazy',
           name: 'v-lazy',
-          component: () => import('@/views/perf-opt/v-lazy/v-lazy.vue'),
+          component: () => import('@play/views/perf-opt/v-lazy/v-lazy.vue'),
         },
       ],
     },

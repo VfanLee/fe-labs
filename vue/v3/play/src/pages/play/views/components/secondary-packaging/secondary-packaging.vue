@@ -10,23 +10,33 @@ const visible = ref(false)
 
 <template>
   <div>
-    <div>
+    <el-row>
       <MyInput v-model="value">
         <template #prefix>prefix</template>
         <template #suffix>suffix</template>
         <template #prepend>prepend</template>
         <template #append>append</template>
       </MyInput>
-    </div>
+    </el-row>
 
-    <div>
-      <el-button type="button" @click="visible = true">btn</el-button>
+    <el-row>
+      <el-button type="primary" @click="visible = true">打开模态框</el-button>
       <MyDialog v-model="visible">
         <!-- <template #title>title</template> -->
         <template #header>header</template>
         <template #default>default</template>
         <template #footer>footer</template>
       </MyDialog>
-    </div>
+    </el-row>
   </div>
 </template>
+
+<style scoped>
+.el-row {
+  margin-bottom: 20px;
+}
+
+.el-row:last-child {
+  margin-bottom: 0;
+}
+</style>
