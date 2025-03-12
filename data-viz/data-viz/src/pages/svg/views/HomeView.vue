@@ -3,6 +3,6 @@
 
 <template>
   <main>
-    home
+    svg home
   </main>
 </template>
