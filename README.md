@@ -3,10 +3,10 @@
 ## 目录规划
 
 ```bash
+├── technical-solutions # 技术方案
+├── libs                # 第三方库 demo
 ├── data-vis            # 数据可视化
-├── technical-solutions # 技术解决方案
-├── nodejs              # nodejs 相关
-├── libs                # 三方库实验 demo
+├── nodejs              # Node.js
 ├── html-css-js         # html、css、js 原生小案例
 ├── ...                 # 常用的，如：html、css、js、vue、vite ……
 ```

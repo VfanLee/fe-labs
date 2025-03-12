@@ -6,7 +6,11 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@canvas/*": ["./src/pages/canvas*"],
+      "@svg/*": ["./src/pages/svg*"],
+      "@d3/*": ["./src/pages/d3*"],
+      "@echarts/*": ["./src/pages/echarts*"]
     }
   }
 }
