@@ -24,10 +24,10 @@
         const [selectValue1, setSelectValue1] = useState('2')
         const [selectValue2, setSelectValue2] = useState(['2', '3'])
 
-        const handleCheckboxValue2Change = e => {
+        const handleCheckboxValue2Change = (e) => {
           const { checked, value } = e.target
 
-          setCheckboxValue2(prev => {
+          setCheckboxValue2((prev) => {
             const updateCheckboxValue2 = new Set(prev)
             if (checked) {
               updateCheckboxValue2.add(value)
@@ -46,7 +46,7 @@
             checkboxValue1,
             checkboxValue2: [...checkboxValue2],
             selectValue1,
-            selectValue2
+            selectValue2,
           }
           console.table(data)
         }
@@ -55,7 +55,7 @@
           <>
             <h2>单行文本</h2>
             <p>{textValue}</p>
-            <input type="text" value={textValue} onInput={e => setTextValue(e.target.value)} />
+            <input type="text" value={textValue} onInput={(e) => setTextValue(e.target.value)} />
 
             <h2>多行文本</h2>
             <p>{textareaValue}</p>
@@ -63,7 +63,7 @@
               cols="30"
               rows="3"
               value={textareaValue}
-              onInput={e => {
+              onInput={(e) => {
                 setTextareaValue(e.target.value)
               }}
             ></textarea>
@@ -71,15 +71,30 @@
             <h2>单选框</h2>
             <p>{radioValue}</p>
             <label>
-              <input type="radio" value="1" checked={radioValue === '1'} onChange={e => setRadioValue(e.target.value)} />
+              <input
+                type="radio"
+                value="1"
+                checked={radioValue === '1'}
+                onChange={(e) => setRadioValue(e.target.value)}
+              />
               One
             </label>
             <label>
-              <input type="radio" value="2" checked={radioValue === '2'} onChange={e => setRadioValue(e.target.value)} />
+              <input
+                type="radio"
+                value="2"
+                checked={radioValue === '2'}
+                onChange={(e) => setRadioValue(e.target.value)}
+              />
               Two
             </label>
             <label>
-              <input type="radio" value="3" checked={radioValue === '3'} onChange={e => setRadioValue(e.target.value)} />
+              <input
+                type="radio"
+                value="3"
+                checked={radioValue === '3'}
+                onChange={(e) => setRadioValue(e.target.value)}
+              />
               Three
             </label>
 
@@ -87,29 +102,44 @@
             <h3>单选</h3>
             <p>{checkboxValue1.toString()}</p>
             <label>
-              <input type="checkbox" checked={checkboxValue1} onChange={e => setCheckboxValue1(e.target.checked)} />
+              <input type="checkbox" checked={checkboxValue1} onChange={(e) => setCheckboxValue1(e.target.checked)} />
               checked
             </label>
 
             <h3>多选</h3>
             <p>{JSON.stringify([...checkboxValue2])}</p>
             <label>
-              <input type="checkbox" value="1" checked={checkboxValue2.has('1')} onChange={handleCheckboxValue2Change} />
+              <input
+                type="checkbox"
+                value="1"
+                checked={checkboxValue2.has('1')}
+                onChange={handleCheckboxValue2Change}
+              />
               One
             </label>
             <label>
-              <input type="checkbox" value="2" checked={checkboxValue2.has('2')} onChange={handleCheckboxValue2Change} />
+              <input
+                type="checkbox"
+                value="2"
+                checked={checkboxValue2.has('2')}
+                onChange={handleCheckboxValue2Change}
+              />
               Two
             </label>
             <label>
-              <input type="checkbox" value="3" checked={checkboxValue2.has('3')} onChange={handleCheckboxValue2Change} />
+              <input
+                type="checkbox"
+                value="3"
+                checked={checkboxValue2.has('3')}
+                onChange={handleCheckboxValue2Change}
+              />
               Three
             </label>
 
             <h2>下拉列表</h2>
             <h3>单选</h3>
             <p>{selectValue1}</p>
-            <select value={selectValue1} onChange={e => setSelectValue1(e.target.value)}>
+            <select value={selectValue1} onChange={(e) => setSelectValue1(e.target.value)}>
               <option value="">---选项说明---</option>
               <option value="1">One</option>
               <option value="2">Two</option>
@@ -118,7 +148,11 @@
 
             <h3>多选</h3>
             <p>{selectValue2}</p>
-            <select value={selectValue2} onChange={e => setSelectValue2(Array.from(e.target.selectedOptions, option => option.value))} multiple>
+            <select
+              value={selectValue2}
+              onChange={(e) => setSelectValue2(Array.from(e.target.selectedOptions, (option) => option.value))}
+              multiple
+            >
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
