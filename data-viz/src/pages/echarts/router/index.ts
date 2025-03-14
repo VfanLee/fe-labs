@@ -35,6 +35,11 @@ const router = createRouter({
           name: 'line-case1',
           component: () => import('../views/line/case1.vue'),
         },
+        {
+          path: '/line/case2',
+          name: 'line-case2',
+          component: () => import('../views/line/case2.vue'),
+        },
       ],
     },
     // 饼图
