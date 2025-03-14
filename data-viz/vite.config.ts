@@ -20,7 +20,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      // '@canvas': fileURLToPath(new URL('./src/pages/canvas', import.meta.url)),
+      '@canvas': fileURLToPath(new URL('./src/pages/canvas', import.meta.url)),
       '@svg': fileURLToPath(new URL('./src/pages/svg', import.meta.url)),
       '@d3': fileURLToPath(new URL('./src/pages/d3', import.meta.url)),
       '@echarts': fileURLToPath(new URL('./src/pages/echarts', import.meta.url)),
@@ -30,7 +30,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        // canvas: 'canvas.html',
+        canvas: 'canvas.html',
         svg: 'svg.html',
         d3: 'd3.html',
         echarts: 'echarts.html',
