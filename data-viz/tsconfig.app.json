@@ -9,8 +9,10 @@
       "@/*": ["./src/*"],
       "@canvas/*": ["./src/pages/canvas*"],
       "@svg/*": ["./src/pages/svg*"],
-      "@d3/*": ["./src/pages/d3*"],
-      "@echarts/*": ["./src/pages/echarts*"]
+      "@echarts/*": ["./src/pages/echarts*"],
+      "@three/*": ["./src/pages/three*"],
+      "@zrender/*": ["./src/pages/zrender*"],
+      "@d3/*": ["./src/pages/d3*"]
     }
   }
 }
