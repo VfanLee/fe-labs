@@ -66,6 +66,18 @@ const router = createRouter({
         },
       ],
     },
+    // 地图
+    {
+      path: '/map',
+      name: 'map',
+      children: [
+        {
+          path: '/map/case1',
+          name: 'map-case1',
+          component: () => import('../views/map/case1.vue'),
+        },
+      ],
+    },
   ],
 })
 
