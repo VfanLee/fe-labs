@@ -10,10 +10,26 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
   },
   {
+    path: "/vuex",
+    name: "vuex",
+    component: () =>
+      import(/* webpackChunkName: "vuex" */ "../views/vuex/index.vue"),
+    children: [
+      {
+        path: "/vuex/counter",
+        name: "vuex-counter",
+        component: () =>
+          import(
+            /* webpackChunkName: "vuex-counter" */ "../views/vuex/counter.vue"
+          ),
+      },
+    ],
+  },
+  {
     path: "/v-model",
     name: "v-model",
     component: () =>
-      import(/* webpackChunkName: "v-model" */ "@/views/v-model/v-model.vue"),
+      import(/* webpackChunkName: "v-model" */ "../views/v-model/v-model.vue"),
     redirect: "/v-model/basic",
     children: [
       {
@@ -21,7 +37,7 @@ const routes = [
         name: "v-model-basic",
         component: () =>
           import(
-            /* webpackChunkName: "v-model-basic" */ "@/views/v-model/basic/basic.vue"
+            /* webpackChunkName: "v-model-basic" */ "../views/v-model/basic/basic.vue"
           ),
       },
       {
@@ -29,7 +45,7 @@ const routes = [
         name: "v-model-multi-value",
         component: () =>
           import(
-            /* webpackChunkName: "v-model-multi-value" */ "@/views/v-model/multi-value/multi-value.vue"
+            /* webpackChunkName: "v-model-multi-value" */ "../views/v-model/multi-value/multi-value.vue"
           ),
       },
     ],
@@ -37,7 +53,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes,
 });

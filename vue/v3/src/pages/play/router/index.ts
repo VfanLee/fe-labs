@@ -35,8 +35,7 @@ const router = createRouter({
         {
           path: 'secondary-packaging',
           name: 'secondary-packaging',
-          component: () =>
-            import('@play/views/components/secondary-packaging/secondary-packaging.vue'),
+          component: () => import('@play/views/components/secondary-packaging/secondary-packaging.vue'),
         },
       ],
     },
@@ -50,6 +49,19 @@ const router = createRouter({
           path: 'v-lazy',
           name: 'v-lazy',
           component: () => import('@play/views/perf-opt/v-lazy/v-lazy.vue'),
+        },
+      ],
+    },
+
+    // pinia
+    {
+      path: '/pinia',
+      name: 'pinia',
+      children: [
+        {
+          path: '/pinia/counter',
+          name: 'pinia-counter',
+          component: () => import('../views/pinia/counter.vue'),
         },
       ],
     },

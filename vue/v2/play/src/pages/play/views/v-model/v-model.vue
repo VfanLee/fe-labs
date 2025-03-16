@@ -20,7 +20,7 @@
 <script>
 export default {
   components: {
-    Layout: () => import("@/components/Layout/index.vue"),
+    Layout: () => import("@play/components/Layout/index.vue"),
   },
 };
 </script>

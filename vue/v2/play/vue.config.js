@@ -6,13 +6,22 @@ module.exports = {
     resolve: {
       alias: {
         "@": require("path").resolve(__dirname, "src"),
+        "@play": require("path").resolve(__dirname, "src/pages/play"),
       },
     },
   },
-  chainWebpack: (config) => {
-    config.plugin("html").tap((args) => {
-      args[0].title = "Vue2 Play";
-      return args;
-    });
+  pages: {
+    index: {
+      entry: "src/pages/play/main.js",
+      template: "src/pages/play/index.html",
+      filename: "index.html",
+      title: "Vue2 Play",
+    },
   },
+  // chainWebpack: (config) => {
+  //   config.plugin("html").tap((args) => {
+  //     args[0].title = "Vue2 Play";
+  //     return args;
+  //   });
+  // },
 };
