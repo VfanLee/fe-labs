@@ -48,7 +48,7 @@ uploadDirBtn.addEventListener('click', () => {
   uploadDirInput.click()
 })
 
-uploadDirInput.addEventListener('change', e => {
+uploadDirInput.addEventListener('change', (e) => {
   files = e.target.files
   console.log('上传文件列表', files)
 
@@ -73,7 +73,7 @@ function uploadFiles() {
       remark3: 0,
       parentId: '???',
       subjectIds: [],
-      majorIds: []
+      majorIds: [],
     })
   }
 }
@@ -82,40 +82,40 @@ function fetchTree() {
   const data = [
     {
       id: 10,
-      path: 'test'
+      path: 'test',
     },
     {
       id: 11,
-      path: 'test/src'
+      path: 'test/src',
     },
     {
       id: 12,
-      path: 'test/src/views'
+      path: 'test/src/views',
     },
     {
       id: 13,
-      path: 'test/src/views/modules'
+      path: 'test/src/views/modules',
     },
     {
       id: 14,
-      path: 'test/src/router'
+      path: 'test/src/router',
     },
     {
       id: 15,
-      path: 'test/src/components'
+      path: 'test/src/components',
     },
     {
       id: 16,
-      path: 'test/src/components/icons'
+      path: 'test/src/components/icons',
     },
     {
       id: 17,
-      path: 'test/src/assets'
+      path: 'test/src/assets',
     },
     {
       id: 18,
-      path: 'test/public'
-    }
+      path: 'test/public',
+    },
   ]
   console.log('fetch 文件夹 pid', data)
   document.querySelectorAll('pre')[1].textContent = JSON.stringify(data, null, 2)
@@ -135,7 +135,7 @@ function uploadDir() {
     const dirPathArr = dirPath.split('/')
     let curDir = dir
     for (const dirName of dirPathArr) {
-      let child = curDir.find(item => item.name === dirName)
+      let child = curDir.find((item) => item.name === dirName)
       if (!child) {
         child = { name: dirName, child: [] }
         curDir.push(child)
