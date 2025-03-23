@@ -21,17 +21,18 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   async function (res) {
+    // 如果服务器返回新的 token，则更新本地 token
     if (res.headers.authorization) {
       const token = res.headers.authorization.replace('Beader ', '')
       setToken(token)
       instance.defaults.headers.Authorization = `Beader ${token}`
     }
+    // 如果服务器返回新的 refreshtoken，则更新本地 refreshtoken
     if (res.headers.refreshtoken) {
       const refreshtoken = res.headers.refreshtoken.replace('Beader ', '')
       setRefreshToken(refreshtoken)
     }
-
-    // 如果无权限，且不是 refresh-token 请求
+    // 如果无权限（可能 token 过期，也可能 refresh 过期），且不是 refresh-token 请求
     if (res.data.code === 401 && !isRefreshRequest(res.config)) {
       // 刷新 token
       const isSuccess = await refreshtoken()
