@@ -1,0 +1,16 @@
+.container {
+  padding: 20px;
+  background-color: lightblue;
+}
+
+.button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: darkblue;
+}
