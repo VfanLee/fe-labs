@@ -8,22 +8,22 @@ function Home() {
           <div>基础</div>
           <ul>
             <li>
-              <Link to="/list">列表渲染</Link>
+              <Link to="/basic/list">列表渲染</Link>
             </li>
             <li>
-              <Link to="/conditional">条件渲染</Link>
+              <Link to="/basic/conditional">条件渲染</Link>
             </li>
             <li>
-              <Link to="/event-handing">事件处理</Link>
+              <Link to="/basic/event-handing">事件处理</Link>
             </li>
             <li>
-              <Link to="/refs">模板引用</Link>
+              <Link to="/basic/refs">模板引用</Link>
             </li>
             <li>
-              <Link to="/styles">Class 与 Style</Link>
+              <Link to="/basic/styles">Class 与 Style</Link>
             </li>
             <li>
-              <Link to="/forms">表单输入</Link>
+              <Link to="/basic/forms">表单输入</Link>
             </li>
           </ul>
         </li>
@@ -32,10 +32,10 @@ function Home() {
           <div>组件化</div>
           <ul>
             <li>
-              <Link to="/classcomp">类组件</Link>
+              <Link to="/basic/classcomp">类组件</Link>
             </li>
             <li>
-              <Link to="/props">Props</Link>
+              <Link to="/basic/props">Props</Link>
             </li>
           </ul>
         </li>
@@ -44,13 +44,19 @@ function Home() {
           <div>hooks</div>
           <ul>
             <li>
-              <Link to="/useState">useState()</Link>
+              <Link to="/basic/custom-hooks">自定义 hooks</Link>
+            </li>
+            <li>
+              <Link to="/basic/useState">useState()</Link>
             </li>
             {/* <li>
-              <Link to="/useEffect">useEffect()</Link>
+              <Link to="/basic/useEffect">useEffect()</Link>
             </li> */}
             <li>
-              <Link to="/useRef">useRef()</Link>
+              <Link to="/basic/useRef">useRef()</Link>
+            </li>
+            <li>
+              <Link to="/basic/useContext">useContext()</Link>
             </li>
           </ul>
         </li>
@@ -59,7 +65,7 @@ function Home() {
           <div>高级 & 原理</div>
           <ul>
             <li>
-              <Link to="/vdom">使用 createElement 创建 VDOM</Link>
+              <Link to="/basic/vdom">使用 createElement 创建 VDOM</Link>
             </li>
           </ul>
         </li>

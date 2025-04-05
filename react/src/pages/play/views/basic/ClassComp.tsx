@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import Card from '@/pages/basic/components/CardClass'
+import Card from '@play/components/CardClass'
 
 interface State {
   count: number

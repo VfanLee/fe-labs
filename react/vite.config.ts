@@ -10,14 +10,12 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@play': fileURLToPath(new URL('./src/pages/play', import.meta.url)),
-      '@basic': fileURLToPath(new URL('./src/pages/basic', import.meta.url)),
     },
   },
   build: {
     rollupOptions: {
       input: {
         index: fileURLToPath(new URL('./index.html', import.meta.url)),
-        basic: fileURLToPath(new URL('./basic.html', import.meta.url)),
         todolist: fileURLToPath(new URL('./todolist.html', import.meta.url)),
       },
     },
