@@ -1,0 +1,84 @@
+@import '../../default.less';
+@tag-unchecked-bg-color: rgb(235, 235, 235);
+@tag-unchecked-font-color: rgb(85, 85, 85);
+
+.main {
+  display: flex;
+  align-items: center;
+
+  .label {
+    display: inline-block;
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 28px;
+
+    .tagWrapper {
+      height: 28px;
+      padding: 3px 0;
+
+      :global {
+        .ant4-tag {
+          display: inline-block;
+          height: 22px;
+          margin-right: 14px;
+          padding: 0 12px;
+          font-size: 14px;
+          cursor: pointer;
+          border-radius: 14px;
+          background-color: #fafafa;
+        }
+
+        .checkedTag {
+          color: @baseColor;
+          border-color: @baseColor;
+        }
+
+        .uncheckedTag {
+          color: @tag-unchecked-font-color;
+          border-color: @tag-unchecked-bg-color;
+          background: @tag-unchecked-bg-color;
+        }
+      }
+    }
+
+    .checkedDot,
+    .uncheckedDot {
+      display: inline-block;
+      cursor: pointer;
+      margin-right: 14px;
+
+      >span {
+        display: inline-block;
+        color: @baseColor;
+      }
+
+      .dot {
+        position: relative;
+        top: -3px;
+        width: 5px;
+        height: 5px;
+        background-color: @baseColor;
+        border-radius: 5px;
+        margin-right: 4px;
+      }
+    }
+
+    .uncheckedDot {
+      >span {
+        color: @tag-unchecked-font-color;
+
+        &:first-child {
+          background-color: @tag-unchecked-font-color;
+        }
+      }
+    }
+
+    .selfTime {
+      height: 26px;
+    }
+  }
+}
