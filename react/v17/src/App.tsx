@@ -1,20 +1,19 @@
-import { Suspense, lazy } from 'react'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
-
-import Home from './views/Home.jsx'
-const About = lazy(() => import('./views/About.jsx'))
+import { Suspense } from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { routes } from './router';
 
 function App() {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          {routes.map(({ path, exact, component: Component }, idx) => (
+            <Route key={idx} path={path} exact={exact} render={props => <Component {...props} />} />
+          ))}
         </Switch>
       </Suspense>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

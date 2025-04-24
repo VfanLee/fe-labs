@@ -1,11 +1,8 @@
-import styles from './App.module.less'
-
-// import EditableTable from './components/EditTable'
-// import EditExpandTable from './components/EditExpandTable'
-import GanttView from './components/GanttView'
-import type { GanttConstructorOptions } from '@visactor/vtable-gantt'
-import { VRender } from '@visactor/vtable-gantt'
-import moment from 'moment'
+import styles from './index.module.less';
+import GanttView from '@/components/GanttView';
+import type { GanttConstructorOptions } from '@visactor/vtable-gantt';
+import { VRender } from '@visactor/vtable-gantt';
+import moment from 'moment';
 
 const records = [
   {
@@ -25,6 +22,7 @@ const records = [
     updateBy: null,
     updateTime: '2025-04-19 22:40:21',
     orderPriority: 1,
+    index: '一',
     minDate: '2025-04-11',
     maxDate: '2025-04-20',
     phases: [
@@ -55,6 +53,7 @@ const records = [
     updateBy: null,
     updateTime: '2025-04-19 22:40:21',
     orderPriority: 1,
+    index: '二',
     minDate: '2025-04-01',
     maxDate: '2025-04-30',
     phases: [
@@ -85,6 +84,7 @@ const records = [
     updateBy: null,
     updateTime: '2025-04-19 22:40:21',
     orderPriority: 1,
+    index: '三',
     minDate: '2025-04-01',
     maxDate: '2025-04-09',
     phases: [
@@ -95,6 +95,37 @@ const records = [
       {
         start: '2025-04-02',
         end: '2025-04-08',
+      },
+    ],
+  },
+  {
+    id: 284,
+    projectId: '1359551747630182400',
+    name: 'aaa',
+    duration: '1',
+    planStartTime: '2025-04-01',
+    planEndTime: '2025-04-01',
+    actualStartTime: '2025-04-01',
+    actualEndTime: '2025-04-01',
+    status: '',
+    version: '1.0',
+    remark: '',
+    createBy: '1224280861281619968',
+    createTime: '2025-04-17 22:53:26',
+    updateBy: null,
+    updateTime: '2025-04-19 22:40:21',
+    orderPriority: 1,
+    index: '四',
+    minDate: '2025-04-01',
+    maxDate: '2025-04-01',
+    phases: [
+      {
+        start: '2025-04-01',
+        end: '2025-04-01',
+      },
+      {
+        start: '2025-04-01',
+        end: '2025-04-01',
       },
     ],
   },
@@ -115,6 +146,7 @@ const records = [
     updateBy: null,
     updateTime: '2025-04-19 22:40:21',
     orderPriority: 1,
+    index: '五',
     minDate: '2025-04-01',
     maxDate: '2025-06-30',
     phases: [
@@ -145,8 +177,9 @@ const records = [
     updateBy: null,
     updateTime: '2025-04-19 22:40:21',
     orderPriority: 1,
-    minDate: '2025-03-31',
-    maxDate: '2025-04-02',
+    index: '六',
+    minDate: '2025-04-01',
+    maxDate: '2025-04-01',
     phases: [
       {
         start: '2025-04-01',
@@ -175,6 +208,7 @@ const records = [
     updateBy: null,
     updateTime: '2025-04-19 22:40:21',
     orderPriority: 1,
+    index: '七',
     minDate: '2025-04-01',
     maxDate: '2025-04-03',
     phases: [
@@ -188,7 +222,7 @@ const records = [
       },
     ],
   },
-]
+];
 const columns = [
   {
     field: 'name',
@@ -234,14 +268,15 @@ const columns = [
     resize: false,
     disableColumnResize: true,
   },
-]
-const option: GanttConstructorOptions = {
+];
+const options: GanttConstructorOptions = {
   overscrollBehavior: 'none',
   records,
   taskListTable: {
     columns,
     tableWidth: 'auto',
     minTableWidth: 80,
+    // maxTableWidth: 600,
     theme: {
       headerStyle: {
         borderColor: 'rgba(0, 0, 0, 0.06)',
@@ -259,6 +294,7 @@ const option: GanttConstructorOptions = {
         bgColor: '#FFF',
       },
     },
+    // rightFrozenColCount: 1
   },
   frame: {
     outerFrameStyle: {
@@ -280,6 +316,7 @@ const option: GanttConstructorOptions = {
     },
   },
   grid: {
+    // backgroundColor: 'gray',
     verticalLine: {
       lineWidth: 1,
       lineColor: '#e1e4e8',
@@ -298,42 +335,45 @@ const option: GanttConstructorOptions = {
     scheduleCreatable: false,
     startDateField: 'minDate',
     endDateField: 'maxDate',
+    // progressField: 'progress',
+    // resizable: false,
     hoverBarStyle: {
       barOverlayColor: 'rgba(99, 144, 0, 0.4)',
     },
     labelText: '{text} {progress}%',
     labelTextStyle: {
+      // padding: 2,
       fontFamily: 'Arial',
       fontSize: 16,
       textAlign: 'left',
       textOverflow: 'ellipsis',
     },
-    customLayout: (args) => {
-      const { width, height, startDate, endDate, taskRecord } = args
+    customLayout: args => {
+      const { width, height, startDate, endDate, taskRecord } = args;
       const taskBarcontainer = new VRender.Group({
         y: 0,
         height: height,
         width: width,
-      })
-      const color = ['blue', 'green']
+      });
+      const color = ['blue', 'green'];
       for (let i = 0; i < taskRecord.phases.length; i++) {
-        const phase = taskRecord.phases[i]
-        if (!phase.start || !phase.end) break
-        const startM = moment(phase.start)
-        const endM = moment(phase.end)
-        const totalDuration = Math.abs(moment(endDate).diff(startDate, 'day')) * 2
+        const phase = taskRecord.phases[i];
+        if (!phase.start || !phase.end) break;
+        const startM = moment(phase.start);
+        const endM = moment(phase.end);
+        const totalDuration = Math.abs(moment(endDate).diff(startDate, 'day')) * 2;
 
         const startX =
           (Math.abs(startM.diff(startDate, 'day')) / totalDuration) * width
             ? (Math.abs(startM.diff(startDate, 'day')) / totalDuration) * width
-            : 0
+            : 0;
         const endX =
           ((totalDuration - Math.abs(endM.diff(endDate, 'day'))) / totalDuration) * width
             ? ((totalDuration - Math.abs(endM.diff(endDate, 'day'))) / totalDuration) * width
-            : 10
-        const barWidth = Math.abs(endX - startX) ? Math.abs(endX - startX) : 10
+            : 10;
+        const barWidth = Math.abs(endX - startX) ? Math.abs(endX - startX) : 10;
 
-        console.log('@@@', startX, barWidth)
+        console.log('@@@', startX, barWidth);
 
         const bar = new VRender.Rect({
           x: startX,
@@ -342,15 +382,15 @@ const option: GanttConstructorOptions = {
           height: 10,
           fill: color[i],
           // cornerRadius: 10,
-        })
-        taskBarcontainer.add(bar)
+        });
+        taskBarcontainer.add(bar);
       }
 
       return {
         rootContainer: taskBarcontainer,
         renderDefaultBar: false,
         renderDefaultText: false,
-      }
+      };
     },
   },
   timelineHeader: {
@@ -368,27 +408,31 @@ const option: GanttConstructorOptions = {
       {
         unit: 'month',
         step: 1,
+        // startOfWeek: "sunday",
+        format(date) {
+          const { startDate } = date;
+          const year = startDate.getFullYear();
+          const month = startDate.getMonth() + 1;
+          // return `Week ${date.dateIndex}`;
+          return `${year}/${String(month).padStart(2, '0')}月`;
+        },
         style: {
           fontSize: 14,
           fontWeight: 'bold',
           color: 'black',
           textAlign: 'center',
           textBaseline: 'middle',
+          // backgroundColor: '#EEF1F5',
           textStick: true,
-        },
-        format(date) {
-          const { startDate } = date
-          const year = startDate.getFullYear()
-          const month = startDate.getMonth() + 1
-          return `${year}/${String(month).padStart(2, '0')}月`
+          // padding: [0, 30, 0, 20]
         },
       },
       {
         unit: 'month',
         step: 1,
-        customLayout: (args) => {
-          const { startDate, width, height } = args
-          const day = moment(startDate).daysInMonth()
+        customLayout: args => {
+          const { startDate, width, height } = args;
+          const day = moment(startDate).daysInMonth();
 
           const container = new VRender.Group({
             height: height,
@@ -398,28 +442,28 @@ const option: GanttConstructorOptions = {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-          })
+          });
 
-          const length1 = 10 / day
-          const length2 = (day - 20) / day
+          const length1 = 10 / day;
+          const length2 = (day - 20) / day;
           const groupConfig = {
             height: height,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-          } as const
+          } as const;
           const container1 = new VRender.Group({
             ...groupConfig,
             width: length1 * width,
-          })
+          });
           const container2 = new VRender.Group({
             ...groupConfig,
             width: length1 * width,
-          })
+          });
           const container3 = new VRender.Group({
             ...groupConfig,
             width: length2 * width,
-          })
+          });
 
           const textConfig = {
             fontSize: 14,
@@ -427,47 +471,54 @@ const option: GanttConstructorOptions = {
             fill: 'black',
             textAlign: 'center',
             textBaseline: 'middle',
-          } as const
+          } as const;
           const textContainer1 = new VRender.Text({
             ...textConfig,
             text: '10',
-          })
+          });
           const textContainer2 = new VRender.Text({
             ...textConfig,
             text: '20',
-          })
+          });
           const textContainere = new VRender.Text({
             ...textConfig,
             text: `${moment(startDate).daysInMonth()}`,
-          })
-          container1.add(textContainer1)
-          container2.add(textContainer2)
-          container3.add(textContainere)
-
-          container.add(container1)
-          container.add(container2)
-          container.add(container3)
+          });
+          container1.add(textContainer1);
+          container2.add(textContainer2);
+          container3.add(textContainere);
+          container.add(container1);
+          container.add(container2);
+          container.add(container3);
 
           return {
             rootContainer: container,
             renderDefaultText: false,
-          }
+          };
+        },
+        style: {
+          fontSize: 14,
+          fontWeight: 'bold',
+          color: 'black',
+          textAlign: 'right',
+          textBaseline: 'bottom',
+          // backgroundColor: '#EEF1F5',
         },
       },
     ],
   },
-  rowSeriesNumber: {
-    title: '序号',
-    width: 80,
-    dragOrder: false,
-    headerStyle: {
-      bgColor: '#f5f5f5',
-      borderColor: 'rgba(0, 0, 0, 0.06)',
-    },
-    style: {
-      borderColor: 'rgba(0, 0, 0, 0.06)',
-    },
-  },
+  // rowSeriesNumber: {
+  //   title: '序号',
+  //   width: 80,
+  //   dragOrder: false,
+  //   headerStyle: {
+  //     bgColor: '#f5f5f5',
+  //     borderColor: 'rgba(0, 0, 0, 0.06)',
+  //   },
+  //   style: {
+  //     borderColor: 'rgba(0, 0, 0, 0.06)',
+  //   },
+  // },
   scrollStyle: {
     scrollRailColor: 'rgba(246, 246, 246, 0.5)',
     visible: 'scrolling',
@@ -475,16 +526,16 @@ const option: GanttConstructorOptions = {
     scrollSliderCornerRadius: 2,
     scrollSliderColor: '#5cb85c',
   },
-}
+};
 
 const App = () => {
   return (
     // <EditableTable />
     // <EditExpandTable />
     <div className={styles.ganttExample}>
-      <GanttView options={option} />
+      <GanttView options={options} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

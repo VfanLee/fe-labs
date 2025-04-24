@@ -1,18 +1,24 @@
-import { Suspense, lazy } from 'react'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { lazy } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import Home from '../views/Home'
-const About = lazy(() => import('../views/About'))
+export const routes = [
+  {
+    path: '/',
+    exact: true,
+    component: () => <Redirect to="/vtable/demo1" />,
+  },
 
-const AppRouter = () => (
-  <Router>
-    <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-      </Switch>
-    </Suspense>
-  </Router>
-)
+  { path: '/home', exact: true, component: lazy(() => import('@/views/home')) },
 
-export default AppRouter
+  //#region antd 表单
+  { path: '/antd/form/basic', exact: true, component: lazy(() => import('@/views/antd/form/basic')) },
+  //#endregion
+
+  //#region antd 表格
+  { path: '/antd/table/basic', exact: true, component: lazy(() => import('@/views/antd/table/basic')) },
+  //#endregion
+
+  //#region
+  { path: '/vtable/demo1', exact: true, component: lazy(() => import('@/views/vtable/demo1')) },
+  //#endregion
+];
