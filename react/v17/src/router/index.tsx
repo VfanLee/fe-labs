@@ -5,7 +5,7 @@ export const routes = [
   {
     path: '/',
     exact: true,
-    component: () => <Redirect to="/vtable/demo1" />,
+    component: () => <Redirect to="/antd/form/basic" />,
   },
 
   { path: '/home', exact: true, component: lazy(() => import('@/views/home')) },
@@ -18,7 +18,7 @@ export const routes = [
   { path: '/antd/table/basic', exact: true, component: lazy(() => import('@/views/antd/table/basic')) },
   //#endregion
 
-  //#region
+  //#region vtable
   { path: '/vtable/demo1', exact: true, component: lazy(() => import('@/views/vtable/demo1')) },
   //#endregion
 ];
