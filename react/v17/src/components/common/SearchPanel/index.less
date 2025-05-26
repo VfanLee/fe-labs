@@ -1,0 +1,84 @@
+@import '../../global.less';
+
+.label {
+  text-overflow: ellipsis;
+  // white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 84px;
+  display: inline-block;
+  text-align: end;
+  margin-right: 8px;
+}
+.noPaddingLabel {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
+  display: inline-block;
+  text-align: end;
+  margin-right: 8px;
+}
+
+.num {
+  text-overflow: ellipsis;
+  // white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  display: inline-block;
+  text-align: end;
+  margin-right: 8px;
+}
+
+.cmzBody {
+  position: relative;
+  padding: 6px 245px 6px 6px;
+
+  .fold {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+  }
+
+  .fold:hover {
+    cursor: pointer;
+  }
+}
+
+:global {
+  .ant-select-tree-list-holder {
+    // 开启treeSelect横向滚动
+    > div {
+      overflow: initial !important;
+    }
+  }
+
+  .ant-select-dropdown {
+    padding: 4px 0 0 0;
+
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      background-color: #ffffff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      height: 100px;
+      background-color: #cccccc;
+    }
+
+    ::-webkit-scrollbar-corner {
+      display: none;
+    }
+
+    .ant-select-tree-title {
+      word-break: keep-all;
+    }
+  }
+}
+.abc {
+  // display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
