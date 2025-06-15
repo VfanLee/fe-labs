@@ -18,6 +18,8 @@ const View: React.FC = () => {
   });
   const [dataSource, setDataSource] = useState<IData[]>([]);
   const [total, setTotal] = useState(0);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>(['2']);
+  const [selectedRows, setSelectedRows] = useState<IData[]>([]);
 
   useEffect(() => {
     const initialValues: IData[] = [
@@ -102,7 +104,22 @@ const View: React.FC = () => {
 
     return (
       <>
-        <Table className={styles.demoTable} columns={columns} dataSource={dataSource} size="small" pagination={false} />
+        <Table
+          className={styles.demoTable}
+          columns={columns}
+          dataSource={dataSource}
+          size="small"
+          pagination={false}
+          // https://4x.ant.design/components/table-cn/#rowSelection
+          rowSelection={{
+            type: 'checkbox', // checkbox | radio
+            onChange: (selectedRowKeys: React.Key[], selectedRows: IData[]) => {
+              console.log(selectedRowKeys, selectedRows);
+              setSelectedRowKeys(selectedRowKeys);
+              setSelectedRows(selectedRows);
+            },
+          }}
+        />
         <Pagination
           style={{ marginTop: 8, textAlign: 'right' }}
           size="small"
@@ -127,7 +144,8 @@ const View: React.FC = () => {
       <Row gutter={16}>
         <Col span={12}>{renderTable()}</Col>
         <Col span={12}>
-          <pre style={{ height: '36vh', overflow: 'auto' }}>{JSON.stringify(dataSource, null, 2)}</pre>
+          <pre style={{ height: '32vh', overflow: 'auto' }}>{JSON.stringify(selectedRowKeys, null, 2)}</pre>
+          <pre style={{ height: '32vh', overflow: 'auto' }}>{JSON.stringify(selectedRows, null, 2)}</pre>
         </Col>
       </Row>
     </>

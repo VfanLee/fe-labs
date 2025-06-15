@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -9,9 +9,15 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue'),
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue'),
+      path: '/basic',
+      name: 'basic',
+      children: [
+        {
+          path: '/basic/rect',
+          name: 'basicRect',
+          component: () => import('../views/basic/Rect.vue'),
+        },
+      ],
     },
     {
       path: '/animation',
@@ -19,6 +25,6 @@ const router = createRouter({
       component: () => import('../views/AnimationView.vue'),
     },
   ],
-})
+});
 
-export default router
+export default router;
