@@ -1,0 +1,22 @@
+.searchWrap {
+  display: flex;
+  overflow: hidden;
+
+  :global {
+    .ant4-btn + .ant4-btn {
+      margin-left: 8px;
+    }
+    .searchList {
+      > .ant4-col {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 40px;
+      }
+      .searchLabel {
+        flex-shrink: 0;
+        width: 80px;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "searchList": [
+    {
+      "field": "aaaId",
+      "label": "aaa",
+      "type": "TreeSelect",
+      "controlProps": {
+        "placeholder": "请选择aaa"
+      }
+    },
+    {
+      "field": "kw",
+      "label": "bbb",
+      "type": "Input",
+      "controlProps": {
+        "placeholder": "请输入bbb"
+      }
+    },
+    {
+      "field": "timedate",
+      "label": "ccc",
+      "type": "RangePicker",
+      "controlProps": {
+        "placeholder": ["c1", "c2"]
+      }
+    },
+    {
+      "field": "dddId",
+      "label": "ddd",
+      "type": "Select",
+      "controlProps": {
+        "placeholder": "请选择ddd"
+      }
+    }
+  ]
+}

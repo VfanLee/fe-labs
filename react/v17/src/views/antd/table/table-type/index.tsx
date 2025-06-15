@@ -51,6 +51,7 @@ const initialValues: IData[] = [
 const View: React.FC = () => {
   const [searchParams] = useState<IDataParams>(defaultParams);
   const [dataSource, setDataSource] = useState<IData[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<any[]>(['2']);
 
   const searchData = (params?: IDataParams) => {
     const p = params ? params : searchParams;
@@ -120,8 +121,10 @@ const View: React.FC = () => {
         pagination={false}
         rowSelection={{
           type: 'checkbox',
+          selectedRowKeys: selectedRowKeys, // 默认勾选
           onChange: (selectedRowKeys, selectedRows, info) => {
             console.log(selectedRowKeys, selectedRows, info);
+            setSelectedRowKeys(selectedRowKeys);
           },
         }}
       />
@@ -137,7 +140,9 @@ const View: React.FC = () => {
       <Row gutter={16}>
         <Col span={12}>{renderTable()}</Col>
         <Col span={12}>
-          <pre style={{ height: '36vh', overflow: 'auto' }}>{JSON.stringify({}, null, 2)}</pre>
+          <pre style={{ height: '36vh', overflow: 'auto' }}>{JSON.stringify({ dataSource }, null, 2)}</pre>
+          <hr />
+          <pre style={{ height: '36vh', overflow: 'auto' }}>{JSON.stringify({ selectedRowKeys }, null, 2)}</pre>
         </Col>
       </Row>
     </>
