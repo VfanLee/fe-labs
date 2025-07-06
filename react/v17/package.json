@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.3",
+    "@tinymce/tinymce-react": "^6.2.1",
     "@visactor/vtable": "^1.18.0",
     "@visactor/vtable-gantt": "^1.18.0",
     "antd": "^4.24.16",
+    "array-move": "^4.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "prop-types": "^15.8.1",
@@ -23,7 +25,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-resizable": "^3.0.5",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "react-sortable-hoc": "^2.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

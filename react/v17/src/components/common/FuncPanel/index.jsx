@@ -1,20 +1,12 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { ConfigProvider, Spin } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 
 import styles from './index.module.less';
 
-export default class FuncPanel extends React.Component {
+export default class FuncPanel extends Component {
   render() {
-    const {
-      loading = false,
-      loadmsg = '加载中...',
-      headerPanel = null,
-      bodyPanel = null,
-      containerStyle = {},
-      headerStyle = {},
-      bodyStyle = {},
-    } = this.props;
+    const { loading = false, loadmsg = '加载中...', headerPanel = null, bodyPanel = null, containerStyle = {}, headerStyle = {}, bodyStyle = {} } = this.props;
     return (
       <ConfigProvider locale={zhCN}>
         <div className={styles.container} style={containerStyle}>

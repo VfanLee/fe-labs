@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue2</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script>
+      const App = {
+        template: `<div>{{ hi }}</div>`,
+        data() {
+          return {
+            hi: 'Hello Vue',
+          };
+        },
+        // render(h) {
+        //   return h('div', this.hi);
+        // },
+      };
+
+      new Vue({
+        // el: '#app',
+        render: (h) => h(App),
+      }).$mount('#app');
+    </script>
+  </body>
+</html>

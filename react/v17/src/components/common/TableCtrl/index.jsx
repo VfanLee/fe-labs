@@ -7,7 +7,7 @@ import ResizeableTitle from '@/components/common/ResizeableTitle';
 const empty = () => {};
 const noop = () => {};
 
-export default class Control extends React.Component {
+export default class Control extends Component {
   width = 0;
   state = {
     cols: [],

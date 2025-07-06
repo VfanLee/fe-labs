@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery.ajax</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <section>
+      <button id="get-user-list">用户列表</button>
+      <button id="get-single-user">单用户</button>
+      <button id="create-user">创建用户</button>
+      <button id="update-user">更新用户</button>
+      <button id="delete-user">删除用户</button>
+      <button id="create-user-formdata">创建用户（formdata）</button>
+      <button id="file-upload">文件上传</button>
+    </section>
+
+    <input type="file" id="hidden-file-input" style="display: none" />
+
+    <script>
+      const baseUrl = 'https://reqres.in/api';
+
+      // 统一配置（请求头、错误处理等）
+      $.ajaxSetup({
+        headers: {
+          'x-api-key': 'reqres-free-v1',
+        },
+        contentType: 'application/json',
+        error: (xhr, status, error) => {
+          console.error('请求失败:', status, error);
+        },
+      });
+
+      // 用户列表 (GET)
+      $('#get-user-list').click(() => {
+        $.ajax({
+          url: baseUrl + '/users?page=2',
+          type: 'GET',
+          success: (response) => {
+            console.log('用户列表:', response);
+          },
+        });
+      });
+
+      // 单用户 (GET)
+      $('#get-single-user').click(() => {
+        $.ajax({
+          url: baseUrl + '/users/2',
+          type: 'GET',
+          success: (response) => {
+            console.log('单用户:', response);
+          },
+        });
+      });
+
+      // 创建用户 (POST)
+      $('#create-user').click(() => {
+        $.ajax({
+          url: baseUrl + '/users',
+          type: 'POST',
+          data: JSON.stringify({
+            name: 'morpheus',
+            job: 'leader',
+          }),
+          success: (response) => {
+            console.log('创建用户:', response);
+          },
+        });
+      });
+
+      // 更新用户 (PUT)
+      $('#update-user').click(() => {
+        $.ajax({
+          url: baseUrl + '/users/2',
+          type: 'PUT',
+          data: JSON.stringify({
+            name: 'morpheus',
+            job: 'zion resident',
+          }),
+          success: (response) => {
+            console.log('更新用户:', response);
+          },
+        });
+      });
+
+      // 删除用户 (DELETE)
+      $('#delete-user').click(() => {
+        $.ajax({
+          url: baseUrl + '/users/2',
+          type: 'DELETE',
+          success: () => {
+            console.log('删除用户成功');
+          },
+        });
+      });
+
+      // 使用FormData创建用户 (POST)
+      $('#create-user-formdata').click(() => {
+        const formData = new FormData();
+        formData.append('name', 'morpheus');
+        formData.append('job', 'leader');
+
+        $.ajax({
+          url: baseUrl + '/users',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: (response) => {
+            console.log('使用FormData创建用户:', response);
+          },
+        });
+      });
+
+      // 文件上传
+      $('#file-upload').click(() => {
+        const fileInput = $('#hidden-file-input');
+        fileInput.trigger('click');
+
+        fileInput.on('change', function () {
+          const file = this.files[0];
+
+          if (!file) {
+            console.log('没有选择文件');
+            return;
+          }
+
+          console.log('准备上传文件:', file.name);
+
+          const formData = new FormData();
+          formData.append('file', file);
+
+          $.ajax({
+            url: 'https://httpbin.org/post',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+              console.log('开始上传文件...');
+            },
+            success: (response) => {
+              console.log('文件上传成功:', response);
+              alert(`文件 "${file.name}" 上传成功（模拟）`);
+              fileInput.val('');
+            },
+            error: function (xhr, status, error) {
+              console.error('文件上传失败:', error);
+              alert('文件上传失败');
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

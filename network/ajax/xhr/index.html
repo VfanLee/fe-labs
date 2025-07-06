@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XMLHttpRequest</title>
+  </head>
+  <body>
+    <section>
+      <button id="get-user-list">用户列表</button>
+      <button id="get-single-user">单用户</button>
+      <button id="create-user">创建用户</button>
+      <button id="update-user">更新用户</button>
+      <button id="delete-user">删除用户</button>
+      <button id="create-user-formdata">创建用户（formdata）</button>
+      <button id="file-upload">文件上传</button>
+    </section>
+
+    <input type="file" id="hidden-file-input" style="display: none" />
+
+    <script>
+      const baseUrl = 'https://reqres.in/api';
+
+      // 通用请求函数
+      function makeRequest(method, url, data = null, headers = {}) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open(method, url);
+
+          // 设置默认请求头
+          xhr.setRequestHeader('x-api-key', 'reqres-free-v1');
+
+          // 设置自定义请求头
+          for (const [key, value] of Object.entries(headers)) {
+            xhr.setRequestHeader(key, value);
+          }
+
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              try {
+                const response = xhr.responseText ? JSON.parse(xhr.responseText) : null;
+                resolve(response);
+              } catch (e) {
+                resolve(xhr.responseText);
+              }
+            } else {
+              reject(new Error(`请求失败: ${xhr.status} ${xhr.statusText}`));
+            }
+          };
+
+          xhr.onerror = () => {
+            reject(new Error('网络错误'));
+          };
+
+          xhr.send(data);
+        });
+      }
+
+      // 用户列表 (GET)
+      document.getElementById('get-user-list').addEventListener('click', () => {
+        makeRequest('GET', baseUrl + '/users?page=2')
+          .then((response) => {
+            console.log('用户列表:', response);
+          })
+          .catch((error) => {
+            console.error('获取用户列表失败:', error);
+          });
+      });
+
+      // 单用户 (GET)
+      document.getElementById('get-single-user').addEventListener('click', () => {
+        makeRequest('GET', baseUrl + '/users/2')
+          .then((response) => {
+            console.log('单用户:', response);
+          })
+          .catch((error) => {
+            console.error('获取单用户失败:', error);
+          });
+      });
+
+      // 创建用户 (POST)
+      document.getElementById('create-user').addEventListener('click', () => {
+        const data = JSON.stringify({
+          name: 'morpheus',
+          job: 'leader',
+        });
+
+        makeRequest('POST', baseUrl + '/users', data, {
+          'Content-Type': 'application/json',
+        })
+          .then((response) => {
+            console.log('创建用户:', response);
+          })
+          .catch((error) => {
+            console.error('创建用户失败:', error);
+          });
+      });
+
+      // 更新用户 (PUT)
+      document.getElementById('update-user').addEventListener('click', () => {
+        const data = JSON.stringify({
+          name: 'morpheus',
+          job: 'zion resident',
+        });
+
+        makeRequest('PUT', baseUrl + '/users/2', data, {
+          'Content-Type': 'application/json',
+        })
+          .then((response) => {
+            console.log('更新用户:', response);
+          })
+          .catch((error) => {
+            console.error('更新用户失败:', error);
+          });
+      });
+
+      // 删除用户 (DELETE)
+      document.getElementById('delete-user').addEventListener('click', () => {
+        makeRequest('DELETE', baseUrl + '/users/2')
+          .then(() => {
+            console.log('删除用户成功');
+          })
+          .catch((error) => {
+            console.error('删除用户失败:', error);
+          });
+      });
+
+      // 使用FormData创建用户 (POST)
+      document.getElementById('create-user-formdata').addEventListener('click', () => {
+        const formData = new FormData();
+        formData.append('name', 'morpheus');
+        formData.append('job', 'leader');
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', baseUrl + '/users');
+        xhr.setRequestHeader('x-api-key', 'reqres-free-v1');
+
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            console.log('使用FormData创建用户:', xhr.responseText ? JSON.parse(xhr.responseText) : null);
+          } else {
+            console.error('使用FormData创建用户失败:', xhr.statusText);
+          }
+        };
+
+        xhr.onerror = () => {
+          console.error('网络错误');
+        };
+
+        xhr.send(formData);
+      });
+
+      // 文件上传
+      document.getElementById('file-upload').addEventListener('click', () => {
+        const fileInput = document.getElementById('hidden-file-input');
+        fileInput.click();
+
+        fileInput.addEventListener('change', function () {
+          const file = this.files[0];
+
+          if (!file) {
+            console.log('没有选择文件');
+            return;
+          }
+
+          console.log('准备上传文件:', file.name);
+
+          const formData = new FormData();
+          formData.append('file', file);
+
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', 'https://httpbin.org/post'); // 模拟文件上传的测试端点
+          xhr.setRequestHeader('x-api-key', 'reqres-free-v1');
+
+          // 上传进度事件
+          xhr.upload.onprogress = function (event) {
+            if (event.lengthComputable) {
+              const percentComplete = (event.loaded / event.total) * 100;
+              console.log(`上传进度: ${percentComplete.toFixed(2)}%`);
+            }
+          };
+
+          xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              console.log('文件上传成功:', xhr.responseText ? JSON.parse(xhr.responseText) : null);
+              alert(`文件 "${file.name}" 上传成功（模拟）`);
+              fileInput.value = ''; // 清空文件输入
+            } else {
+              console.error('文件上传失败:', xhr.statusText);
+            }
+          };
+
+          xhr.onerror = function () {
+            console.error('网络错误');
+          };
+
+          xhr.send(formData);
+        });
+      });
+    </script>
+  </body>
+</html>

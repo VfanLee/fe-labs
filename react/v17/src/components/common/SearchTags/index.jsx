@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Tag, DatePicker } from 'antd';
 import moment from 'moment';
 import styles from './index.module.less';
 const dateFormat = 'YYYY-MM-DD HH:mm:ss';
 const dateFormats = 'YYYY-MM-DD';
 const { RangePicker } = DatePicker;
-class SearchTags extends React.Component {
+class SearchTags extends Component {
   getTimes(attrName, attrValue) {
     const { handleChange = () => {} } = this.props;
     let startTime = null;

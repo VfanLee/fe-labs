@@ -1,9 +1,9 @@
 import styles from './index.less';
-import React from 'react';
+import React, { Component } from 'react';
 import { Row, Col, Button } from 'antd';
 import { DownOutlined, UpOutlined, SearchOutlined, ReloadOutlined } from '@ant-design/icons';
 
-class SearchWrap extends React.Component {
+class SearchWrap extends Component {
   static defaultProps = {
     list: [],
     num: 3,

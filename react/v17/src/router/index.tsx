@@ -5,7 +5,7 @@ export const routes = [
   {
     path: '/',
     exact: true,
-    component: () => <Redirect to="/antd/select/demo1" />,
+    component: () => <Redirect to="/tinymce/demo1" />,
   },
 
   { path: '/home', exact: true, component: lazy(() => import('@/views/home/index.tsx')) },
@@ -17,18 +17,26 @@ export const routes = [
   //#endregion
 
   //#region antd
-  // select
+  //#region select
   { path: '/antd/select/demo1', exact: true, component: lazy(() => import('@/views/antd/select/demo1.tsx')) },
   { path: '/antd/treeSelect/demo1', exact: true, component: lazy(() => import('@/views/antd/treeSelect/demo1.tsx')) },
-  // form
+  //#endregion
+
+  //#region form
   { path: '/antd/form/basic', exact: true, component: lazy(() => import('@/views/antd/form/basic.tsx')) },
-  // table
+  { path: '/antd/form/basic2', exact: true, component: lazy(() => import('@/views/antd/form/basic2.tsx')) },
+  //#endregion
+
+  //#region table
+  // 基本使用
   { path: '/antd/table/basic', exact: true, component: lazy(() => import('@/views/antd/table/basic/index.tsx')) },
-  {
-    path: '/antd/table/table-type',
-    exact: true,
-    component: lazy(() => import('@/views/antd/table/table-type/index.tsx')),
-  },
+  // 可选择
+  { path: '/antd/table/selection', exact: true, component: lazy(() => import('@/views/antd/table/selection/index.tsx')) },
+  // 表头分组
+  { path: '/antd/table/grouping-columns', exact: true, component: lazy(() => import('@/views/antd/table/grouping-columns/index.tsx')) },
+  // 拖拽手柄列
+  { path: '/antd/table/drag-sorting-handler', exact: true, component: lazy(() => import('@/views/antd/table/drag-sorting-handler/index.tsx')) },
+  //#endregion
   //#endregion
 
   //#region 工具库
@@ -37,7 +45,8 @@ export const routes = [
   { path: '/tools/qs', exact: true, component: lazy(() => import('@/views/tools/qs.tsx')) },
   //#endregion
 
-  //#region vtable
+  //#region other
   { path: '/vtable/demo1', exact: true, component: lazy(() => import('@/views/vtable/demo1.tsx')) },
+  { path: '/tinymce/demo1', exact: true, component: lazy(() => import('@/views/tinymce/demo1.tsx')) },
   //#endregion
 ];

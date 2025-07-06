@@ -1,7 +1,11 @@
 import styles from './index.module.less';
-import { Col, Pagination, Row, Space, Table, Tag } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
+import { Col, Pagination, Row, Space, Table, Tag } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
+import type { ColumnsType } from 'antd/es/table';
+import { arrayMoveImmutable } from 'array-move';
+import type { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
+import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 
 interface IData {
   key: string;
@@ -10,6 +14,10 @@ interface IData {
   address: string;
   tags: string[];
 }
+
+const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />);
+const SortableItem = SortableElement((props: React.HTMLAttributes<HTMLTableRowElement>) => <tr {...props} />);
+const SortableBody = SortableContainer((props: React.HTMLAttributes<HTMLTableSectionElement>) => <tbody {...props} />);
 
 const View: React.FC = () => {
   const [searchParams, setSearchParams] = useState<Record<string, any>>({
@@ -47,8 +55,27 @@ const View: React.FC = () => {
     setTotal(100);
   }, []);
 
+  const onSortEnd = ({ oldIndex, newIndex }: SortEnd) => {
+    if (oldIndex !== newIndex) {
+      const newData = arrayMoveImmutable(dataSource.slice(), oldIndex, newIndex).filter((el: IData) => !!el);
+      console.log('Sorted items: ', newData);
+      setDataSource(newData);
+    }
+  };
+
+  const DraggableContainer = (props: SortableContainerProps) => (
+    <SortableBody useDragHandle disableAutoscroll helperClass="row-dragging" onSortEnd={onSortEnd} {...props} />
+  );
+
   const renderTable = () => {
     const columns: ColumnsType<IData> = [
+      {
+        title: '#',
+        dataIndex: 'sort',
+        width: 30,
+        className: 'drag-visible',
+        render: () => <DragHandle />,
+      },
       {
         title: '姓名',
         dataIndex: 'name',
@@ -100,9 +127,25 @@ const View: React.FC = () => {
       },
     ];
 
+    const DraggableBodyRow: React.FC<any> = ({ className, style, ...restProps }) => {
+      const index = dataSource.findIndex(x => x.key === restProps['data-row-key']);
+      return <SortableItem index={index} {...restProps} />;
+    };
+
     return (
       <>
-        <Table className={styles.demoTable} columns={columns} dataSource={dataSource} size="small" pagination={false} />
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          size="small"
+          pagination={false}
+          components={{
+            body: {
+              wrapper: DraggableContainer,
+              row: DraggableBodyRow,
+            },
+          }}
+        />
         <Pagination
           style={{ marginTop: 8, textAlign: 'right' }}
           size="small"
